@@ -9,4 +9,5 @@ class Config {
     lateinit var clientId: String
     lateinit var clientSecret: String
     lateinit var channelsToSubscribe: List<String>
+    lateinit var regRpWebhookUrl: String
 }
