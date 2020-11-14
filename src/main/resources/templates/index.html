@@ -3,6 +3,7 @@
 
 <head>
     <title>Sub Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
           integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
@@ -12,6 +13,7 @@
             font-family: Calibri, arial, helvetica;
             text-align: center;
             background-color: #cdebfa;
+            min-width: 320px;
         }
 
         .twitch_img {
@@ -52,12 +54,22 @@
             display: inline-block;
         }
 
+
         .requirements {
             display: flex;
             margin: auto;
             width: 60%;
             justify-content: space-between;
+            flex-direction: row;
         }
+
+        @media (max-width: 900px) {
+            .requirements {
+                flex-direction: column;
+            }
+        }
+
+
     </style>
 </head>
 <body>
