@@ -8,4 +8,5 @@ class Config {
     lateinit var secretKey: String
     lateinit var clientId: String
     lateinit var clientSecret: String
+    lateinit var channelsToSubscribe: List<String>
 }

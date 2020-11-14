@@ -5,3 +5,6 @@ settings:
   secret-key: [16 symbols]
   client-id: [id]
   client-secret: [secret]
+  channels-to-subscribe:
+    - channel1
+    - channel2
