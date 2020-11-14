@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+<head>
+    <title>Sub Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+          integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+          crossorigin="anonymous"/>
+    <style type="text/css">
+        body {
+            font-family: Calibri, arial, helvetica;
+            text-align: center;
+            background-color: #cdebfa;
+        }
+
+        .twitch_img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 250px;
+            height: auto;
+        }
+
+        .steam_img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 300px;
+            height: auto;
+        }
+
+        .done {
+            filter: grayscale(100%) blur(5px);
+
+        }
+
+        h1 {
+            font-size: 3.2em;
+        }
+
+        p {
+            font-size: 2.2em;
+
+        }
+
+        .smallp {
+            font-size: 1.5em;
+        }
+
+        .inline {
+            display: inline-block;
+        }
+
+        .requirements {
+            display: flex;
+            margin: auto;
+            width: 60%;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+<h1>👨Только для подписчиков <a href="https://www.twitch.tv/team/voiceboys">VoiceBoys</a>👨</h1>
+<p>Чтобы зарегистрироваться, необходимо авторизоваться в оба сервиса</p>
+<div class="requirements">
+    <div class="requirement">
+        <p>Авторизоваться через Twitch:</p>
+        <div th:if="${twitch == 'none'}">
+            <a href="/twitch"><img class="twitch_img"
+                                   src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Twitch_logo_2019.svg"
+                                   alt=""></a>
+        </div>
+        <div th:if="${twitch == 'ok'}">
+            <img class="twitch_img done"
+                 src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Twitch_logo_2019.svg"
+                 alt="">
+            <p class="inline">✅</p>
+        </div>
+        <div th:if="${twitch == 'error'}">
+            <a href="/twitch"><img class="twitch_img"
+                                   src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Twitch_logo_2019.svg"
+                                   alt=""></a>
+            <p class="inline">❌</p>
+            <p class="smallp">Что-то пошло не так, попробуй еще :( </p>
+        </div>
+    </div>
+    <div class="requirement">
+        <p>Авторизоваться через Steam:</p>
+        <div th:if="${steam == 'none'}">
+            <a href="/steam"><img class="steam_img"
+                                  src="https://cdn.worldvectorlogo.com/logos/steam.svg"
+                                  alt=""></a>
+        </div>
+        <div th:if="${steam == 'ok'}">
+            <img class="steam_img done"
+                 src="https://cdn.worldvectorlogo.com/logos/steam.svg"
+                 alt="">
+            <p class="inline">✅</p>
+        </div>
+        <div th:if="${steam == 'error'}">
+            <a href="/steam"><img class="steam_img"
+                                  src="https://cdn.worldvectorlogo.com/logos/steam.svg"
+                                  alt=""></a>
+            <p class="inline">❌</p>
+            <p class="smallp">Что-то пошло не так, попробуй еще :( </p>
+        </div>
+    </div>
+</div>
+<div th:if="${twitch == 'ok' && steam == 'ok'}">
+    <p>✨Ура, все получилось!✨</p>
+    <p>Теперь можно идти играть!</p>
+</div>
+</body>
+</html>
+

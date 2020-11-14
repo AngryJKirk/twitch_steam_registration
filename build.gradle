@@ -1,0 +1,59 @@
+buildscript {
+    ext {
+        kotlinVersion = '1.4.10'
+        springBootVersion = '2.3.2.RELEASE'
+        telegramBotVersion = '4.9.1'
+        ktlintVersion = '9.4.1'
+        coroutinesVersion = '1.3.9'
+        testcontainersVersion = '1.13.0'
+        guavaVersion = '28.2-jre'
+        postgresVersion = '42.2.11'
+        twitchVersion = '1.1.2'
+        jacksonVersion = '2.10.3'
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath group: "org.springframework.boot", name: "spring-boot-gradle-plugin", version: "${springBootVersion}"
+        classpath group: "org.jetbrains.kotlin", name: "kotlin-gradle-plugin", version: "${kotlinVersion}"
+        classpath group: "org.jetbrains.kotlin", name: "kotlin-allopen", version: "${kotlinVersion}"
+        classpath group: "org.jlleitschuh.gradle", name: "ktlint-gradle", version: "${ktlintVersion}"
+    }
+}
+repositories {
+    mavenCentral()
+    jcenter()
+}
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
+apply plugin: 'org.springframework.boot'
+apply plugin: "org.jlleitschuh.gradle.ktlint"
+
+group = 'space.yaroslav'
+sourceCompatibility = 1.8
+
+dependencies {
+    compile group: 'com.github.twitch4j', name: 'twitch4j', version: "${twitchVersion}"
+    compile group: 'com.google.guava', name: 'guava', version: "${guavaVersion}"
+    compile group: 'org.postgresql', name: 'postgresql', version: "${postgresVersion}"
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: "${springBootVersion}"
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
+    compile group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk8", version: "${kotlinVersion}"
+    compile group: "org.jetbrains.kotlin", name: "kotlin-reflect", version: "${kotlinVersion}"
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: "${springBootVersion}"
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
+    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: "${jacksonVersion}"
+    testCompile group: "org.testcontainers", name: "testcontainers", version: "${testcontainersVersion}"
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: "${springBootVersion}"
+    implementation group: "org.jetbrains.kotlinx", name: "kotlinx-coroutines-core", version: "${coroutinesVersion}"
+
+
+}
+
+bootRun {
+    jvmArgs = ["-Xmx64m"]
+}
