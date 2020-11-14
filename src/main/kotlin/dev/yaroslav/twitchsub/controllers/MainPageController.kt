@@ -23,7 +23,7 @@ class MainPageController(private val stateService: StateService) {
     }
 
     @GetMapping("/reset")
-    fun reset(httpServletResponse: HttpServletResponse, httpSession: HttpSession){
+    fun reset(httpServletResponse: HttpServletResponse, httpSession: HttpSession) {
         httpSession.invalidate()
         httpServletResponse.sendRedirect("/")
     }
