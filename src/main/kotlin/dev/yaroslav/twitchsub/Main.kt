@@ -19,9 +19,9 @@ class Main(private val config: Config) {
     @Bean
     fun identityProvider(): OAuth2IdentityProvider {
         return TwitchIdentityProvider(
-            "4kvzyabtl9by76ykbgjjbxmqx7bajt",
-            "nrse4ailymvbiirud0eajrfl1qnhic",
-            "http://${config.redirectDomain}/twitch/done"
+            config.clientId,
+            config.clientSecret,
+            "${config.redirectDomain}/twitch/done"
         )
     }
 }

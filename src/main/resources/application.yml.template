@@ -3,3 +3,5 @@ server:
 settings:
   redirect-domain: localhost
   secret-key: [16 symbols]
+  client-id: [id]
+  client-secret: [secret]

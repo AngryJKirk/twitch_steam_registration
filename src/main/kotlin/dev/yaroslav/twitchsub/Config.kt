@@ -6,4 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 class Config {
     lateinit var redirectDomain: String
     lateinit var secretKey: String
+    lateinit var clientId: String
+    lateinit var clientSecret: String
 }

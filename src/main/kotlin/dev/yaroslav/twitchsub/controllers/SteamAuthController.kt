@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession
 class SteamAuthController(config: Config, private val stateService: StateService) {
     private val logger = LoggerFactory.getLogger(SteamAuthController::class.java)
     private val redirectUrl =
-        "https://steamcommunity.com/openid/login?openid.ns=http://specs.openid.net/auth/2.0&openid.mode=checkid_setup&openid.return_to=http://${config.redirectDomain}/steam/done&openid.realm=http://${config.redirectDomain}&openid.ns.sreg=http://openid.net/extensions/sreg/1.1&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select"
+        "https://steamcommunity.com/openid/login?openid.ns=http://specs.openid.net/auth/2.0&openid.mode=checkid_setup&openid.return_to=${config.redirectDomain}/steam/done&openid.realm=http://${config.redirectDomain}&openid.ns.sreg=http://openid.net/extensions/sreg/1.1&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select"
 
     @GetMapping
     fun getRedirect(httpServletResponse: HttpServletResponse) {
