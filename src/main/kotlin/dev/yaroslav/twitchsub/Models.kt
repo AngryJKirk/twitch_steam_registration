@@ -1,6 +1,5 @@
 package dev.yaroslav.twitchsub
 
-
 enum class State(val id: String) {
     OK("ok"),
     ERROR("error"),

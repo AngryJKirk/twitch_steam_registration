@@ -9,4 +9,3 @@ interface SuccessHook {
     fun getHookType(): HookType
     fun processData(data: StateData): HookResult
 }
-
