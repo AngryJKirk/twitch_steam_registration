@@ -1,6 +1,5 @@
 package dev.yaroslav.twitchsub.services
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import dev.yaroslav.twitchsub.IntegrationName
 import dev.yaroslav.twitchsub.State
 import dev.yaroslav.twitchsub.StateData
@@ -8,9 +7,8 @@ import org.springframework.stereotype.Component
 import javax.servlet.http.HttpSession
 
 @Component
-class StateService(private val encryptor: SessionDataEncryptor) {
+class StateService {
 
-    val objectMapper = jacksonObjectMapper()
     fun getState(httpSession: HttpSession): Map<IntegrationName, State> {
         val data = getDataInternal(httpSession)
         val stateMap = mutableMapOf(
@@ -27,9 +25,7 @@ class StateService(private val encryptor: SessionDataEncryptor) {
     }
 
     fun updateData(httpSession: HttpSession, stateService: StateData) {
-        val dataJson = objectMapper.writeValueAsString(stateService)
-        val encryptedData = encryptor.encrypt(httpSession.id, dataJson)
-        httpSession.setAttribute("data", encryptedData)
+        httpSession.setAttribute("data", stateService)
     }
 
     fun getData(httpSession: HttpSession): StateData {
@@ -37,16 +33,8 @@ class StateService(private val encryptor: SessionDataEncryptor) {
     }
 
     private fun getDataInternal(httpSession: HttpSession): StateData {
-        val data = httpSession.getAttribute("data")
-        return if (data == null) {
-            val dataObj = StateData(null, null)
-            val dataJson = objectMapper.writeValueAsString(dataObj)
-            val encryptedData = encryptor.encrypt(httpSession.id, dataJson)
-            httpSession.setAttribute("data", encryptedData)
-            dataObj
-        } else {
-            val decryptedData = encryptor.decrypt(httpSession.id, data as String)
-            objectMapper.readValue(decryptedData, StateData::class.java)
-        }
+        return httpSession.getAttribute("data") as? StateData
+            ?: StateData(null, null)
+                .also { httpSession.setAttribute("data", it) }
     }
 }

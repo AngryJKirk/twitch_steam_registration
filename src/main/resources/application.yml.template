@@ -2,7 +2,6 @@ server:
   port: 80
 settings:
   redirect-domain: localhost
-  secret-key: [16 symbols]
   client-id: [id]
   client-secret: [secret]
   reg-rp-webhook-url: [url]

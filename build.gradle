@@ -46,7 +46,6 @@ dependencies {
     compile group: "org.jetbrains.kotlin", name: "kotlin-reflect", version: "${kotlinVersion}"
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: "${springBootVersion}"
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
-    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: "${jacksonVersion}"
     testCompile group: "org.testcontainers", name: "testcontainers", version: "${testcontainersVersion}"
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: "${springBootVersion}"
     implementation group: "org.jetbrains.kotlinx", name: "kotlinx-coroutines-core", version: "${coroutinesVersion}"
