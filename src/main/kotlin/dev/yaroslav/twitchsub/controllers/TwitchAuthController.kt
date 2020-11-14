@@ -33,11 +33,16 @@ class TwitchAuthController(
 
     @GetMapping("/done")
     fun doneAuth(
-        @RequestParam(required = false) code: String,
+        @RequestParam(required = false) code: String?,
         httpSession: HttpSession,
         httpServletResponse: HttpServletResponse
     ) {
         val data = stateService.getData(httpSession)
+        if (code == null) {
+            stateService.updateData(httpSession, data.copy(isTwitchError = true, isTwitchSub = null))
+            httpServletResponse.sendRedirect("/")
+            return
+        }
         try {
             val isSub = twitchClient.isSub(code)
             stateService.updateData(httpSession, data.copy(isTwitchError = false, isTwitchSub = isSub))
