@@ -15,13 +15,23 @@
             background-color: #cdebfa;
             min-width: 320px;
         }
+        img {
+            filter: drop-shadow(5px 10px 4px #4444dd);
+        }
+        .trans {
+            transition: 0.3s;
 
+        }
+        .trans:hover {
+            transform: scale(1.3);
+        }
         .twitch_img {
             display: block;
             margin-left: auto;
             margin-right: auto;
             width: 250px;
             height: auto;
+
         }
 
         .steam_img {
@@ -34,7 +44,6 @@
 
         .done {
             filter: grayscale(100%) blur(5px);
-
         }
 
         h1 {
@@ -79,7 +88,7 @@
     <div class="requirement">
         <p>Авторизоваться через Twitch:</p>
         <div th:if="${twitch == 'none'}">
-            <a href="/twitch"><img class="twitch_img"
+            <a href="/twitch"><img class="twitch_img trans"
                                    src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Twitch_logo_2019.svg"
                                    alt=""></a>
         </div>
@@ -90,7 +99,7 @@
             <p class="inline">✅</p>
         </div>
         <div th:if="${twitch == 'error'}">
-            <a href="/twitch"><img class="twitch_img"
+            <a href="/twitch"><img class="twitch_img trans"
                                    src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Twitch_logo_2019.svg"
                                    alt=""></a>
             <p class="inline">❌</p>
@@ -100,7 +109,7 @@
     <div class="requirement">
         <p>Авторизоваться через Steam:</p>
         <div th:if="${steam == 'none'}">
-            <a href="/steam"><img class="steam_img"
+            <a href="/steam"><img class="steam_img trans"
                                   src="https://cdn.worldvectorlogo.com/logos/steam.svg"
                                   alt=""></a>
         </div>
@@ -111,7 +120,7 @@
             <p class="inline">✅</p>
         </div>
         <div th:if="${steam == 'error'}">
-            <a href="/steam"><img class="steam_img"
+            <a href="/steam"><img class="steam_img trans"
                                   src="https://cdn.worldvectorlogo.com/logos/steam.svg"
                                   alt=""></a>
             <p class="inline">❌</p>
