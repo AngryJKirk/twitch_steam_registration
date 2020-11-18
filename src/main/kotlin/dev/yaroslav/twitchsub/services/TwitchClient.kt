@@ -6,6 +6,7 @@ import dev.yaroslav.twitchsub.Config
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.slf4j.LoggerFactory
+import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Component
 
 @Component
@@ -31,8 +32,8 @@ class TwitchClient(
 
     private fun checkIsSubOfChannel(cred: OAuth2Credential, channelName: String): Boolean {
         val request = Request.Builder()
-            .addHeader("Authorization", "OAuth ${cred.accessToken}")
-            .addHeader("Accept", "application/vnd.twitchtv.v5+json")
+            .addHeader(HttpHeaders.AUTHORIZATION, "OAuth ${cred.accessToken}")
+            .addHeader(HttpHeaders.ACCEPT, "application/vnd.twitchtv.v5+json")
             .url("https://api.twitch.tv/kraken/users/${cred.userId}/subscriptions/$channelName")
             .build()
 

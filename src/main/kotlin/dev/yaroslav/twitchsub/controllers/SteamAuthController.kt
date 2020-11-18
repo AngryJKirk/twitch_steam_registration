@@ -40,6 +40,7 @@ class SteamAuthController(config: Config, private val stateService: StateService
             stateService.updateData(httpSession, state.copy(isSteamError = false, steamCode = steamCode))
         } catch (e: Exception) {
             logger.error("Steam error", e)
+            stateService.updateData(httpSession, state.copy(isSteamError = true))
         }
         httpServletResponse.sendRedirect("/")
     }

@@ -31,8 +31,11 @@ class RegisterRpServerHook(private val config: Config) : SuccessHook {
 
             runCatching {
                 val response = okHttp.newCall(request).execute()
-                if (response.code == 200) HookResult(HookResultState.OK)
-                else HookResult(HookResultState.ERROR, message = "Got ${response.code} response code")
+                if (response.code == 200) {
+                    HookResult(HookResultState.OK)
+                } else {
+                    HookResult(HookResultState.ERROR, message = "Got ${response.code} response code")
+                }
             }.getOrElse { exception ->
                 logger.info("Some error happen", exception)
                 HookResult(HookResultState.ERROR, exception.message)
